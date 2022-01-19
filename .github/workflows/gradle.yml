@@ -30,5 +30,7 @@ jobs:
         arguments: build
 
     - uses: jfrog/setup-jfrog-cli@v1
-    - run: jfrog --version
+    - run: |
+        jfrog rt ping 3.143.245.238:8081
+   
 
