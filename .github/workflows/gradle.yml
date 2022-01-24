@@ -3,7 +3,7 @@ name: Java CI with Gradle
 
 on:
   workflow_run:
-    workflows: [IAC deployment]
+    workflows: [IAC deployment1]
     types: [requested]
     branches: [master]
 
