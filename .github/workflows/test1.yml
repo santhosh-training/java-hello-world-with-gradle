@@ -1,28 +1,14 @@
-name: Copy from tom
+#creating IAC deployment
+name: IAC deployment
+#creating event whenever commit happens it will trigger
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches: [ master ]
+#creating job
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  IAC:
+    #selecting ubuntu runner
+    runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11
-          distribution: 'adopt'
-          cache: gradle
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
-        with:
-          arguments: build
-      - name: Archive test report
-        uses: actions/upload-artifact@v2
-        with:
-          name: Test report
-          path: build/reports/tests/test
+      - name: IAC
+        run: echo "infrastructure setup"
