@@ -22,7 +22,7 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
         
       -  name: step3 printing name
-         if: github.event.ref == 'refs/heads/feature'
+         if: github.event.ref == 'refs/heads/master'
          run: |
            echo "this is feature"
       
