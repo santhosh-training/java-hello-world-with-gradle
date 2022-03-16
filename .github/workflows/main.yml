@@ -2,7 +2,9 @@ name: CI Workflow
    
 on:
   push:
-    branches: [ branch** ]   
+    branches:
+      - master
+      - develop
 
 jobs:
   ci:
@@ -13,5 +15,9 @@ jobs:
        
       - name: Step 2 - Gradle wrapper version validation
         uses: gradle/wrapper-validation-action@v1
+        
+      -  name: step3 printing name
+         run: |
+           echo "this is feature"
       
       
