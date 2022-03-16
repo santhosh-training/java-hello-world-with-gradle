@@ -1,24 +1,40 @@
-
-name: Java CI with Gradle
-
+ame: CI Workflow
+   
 on:
-  workflow_run:
-    workflows: [IAC deployment]
-    types: [completed]
-    branches: [master]
-
+  workflow_dispatch:
+  push:
+    branches: [ branch** ]   
+  pull_request:
+    branches:
+     - main
+     - develop
+     
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+  ci:
+    runs-on: [self-hosted, linux, X64, research]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@4137be6a8bf7d7133955359dbd952c0ca73b1021
-      with:
-        arguments: build
+      - name: Step 1 - Checkout dev branch from GitHub
+        uses: actions/checkout@v2
+       
+      - name: Step 2 - Gradle wrapper version validation
+        uses: gradle/wrapper-validation-action@v1
+      
+      - name: Step 3 - Use Java version 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          distribution: 'adopt'
+          cache: gradle
+                
+      - name: chmod permissions
+        run: chmod +x ./gradlew
+                  
+      - name: Step4 - Build with Gradle
+        uses: gradle/gradle-build-action@v2.1.1
+        with:
+          arguments: build
+          
+      - name: Step 5 - Listing the build file name
+        run: |
+          ls '${{ github.workspace }}'/build/libs
