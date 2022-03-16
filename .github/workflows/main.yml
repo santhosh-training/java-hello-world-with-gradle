@@ -5,8 +5,8 @@ on:
     branches: [ branch** ]   
   pull_request:
     branches:
-     - main
-     - develop
+     - master
+     #- develop
      
 
 jobs:
