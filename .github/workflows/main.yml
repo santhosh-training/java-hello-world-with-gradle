@@ -11,7 +11,7 @@ on:
 
 jobs:
   ci:
-    runs-on: [self-hosted, linux, X64, research]
+    runs-on: ubuntu-latest
     steps:
       - name: Step 1 - Checkout dev branch from GitHub
         uses: actions/checkout@v2
