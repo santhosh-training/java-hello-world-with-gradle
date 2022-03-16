@@ -1,12 +1,8 @@
 name: CI Workflow
    
 on:
-  workflow_dispatch:
   push:
-    branches: [ branch** ]   
-  pull_request:
-    branches:
-     - master
+    branches: [ master ]   
 
 jobs:
   ci:
